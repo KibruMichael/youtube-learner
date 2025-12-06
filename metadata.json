@@ -1,0 +1,5 @@
+{
+  "name": "YouTube Learner",
+  "description": "An AI-powered learning companion that generates insights and transcripts from YouTube videos.",
+  "requestFramePermissions": []
+}
