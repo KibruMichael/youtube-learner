@@ -11,19 +11,28 @@ body {
 
 /* Glassmorphism */
 .glass {
-  background-color: rgb(255 255 255 / 0.8);
-  backdrop-filter: blur(24px);
-  border: 1px solid rgb(255 255 255 / 0.2);
-  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  background-color: rgb(255 255 255 / 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgb(255 255 255 / 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
 }
 
-.glass-dark {
-  background-color: rgb(15 23 42 / 0.8);
+.glass-strong {
+  background-color: rgb(15 23 42 / 0.85); /* Dark slate with high opacity */
   backdrop-filter: blur(24px);
-  border: 1px solid rgb(255 255 255 / 0.1);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgb(255 255 255 / 0.15);
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5);
 }
 
+.glass-dark {
+  background-color: rgb(15 23 42 / 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgb(255 255 255 / 0.1);
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+}
 /* Premium gradients */
 .gradient-primary {
   background-image: linear-gradient(to bottom right, rgb(37 99 235), rgb(79 70 229), rgb(147 51 234));
