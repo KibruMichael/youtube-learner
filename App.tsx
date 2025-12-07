@@ -5,7 +5,7 @@ import VideoInput from './components/VideoInput';
 import VideoAnalysisView from './components/VideoAnalysisView';
 import Login from './components/Login';
 import { getYoutubeId } from './utils/youtube';
-import { AlertTriangle, Loader2 } from 'lucide-react';
+import { AlertTriangle, Loader2, Menu } from 'lucide-react';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { collection, query, orderBy, onSnapshot, addDoc, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { auth, db } from './firebase';
@@ -21,6 +21,9 @@ const App: React.FC = () => {
   // but the long-term loading state depends on the data presence in Firestore.
   const [isInitializing, setIsInitializing] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  // Sidebar State
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // Monitor Auth State
   useEffect(() => {
@@ -243,6 +246,7 @@ const App: React.FC = () => {
   const handleSelectVideo = (video: VideoData) => {
     setActiveVideoId(video.id);
     setViewState('analysis');
+    setIsSidebarOpen(false); // Close sidebar on mobile when selecting
   };
 
   const handleDeleteVideo = async (videoId: string, e: React.MouseEvent) => {
@@ -267,6 +271,7 @@ const App: React.FC = () => {
   const handleNewAnalysis = () => {
     setActiveVideoId(null);
     setViewState('home');
+    // Sidebar closes automatically via onNewAnalysis prop in Sidebar content buttons usually
   };
 
   // Auth Loading State
@@ -303,10 +308,25 @@ const App: React.FC = () => {
         onNewAnalysis={handleNewAnalysis}
         onDeleteVideo={handleDeleteVideo}
         activeVideoId={activeVideoId}
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
       />
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col relative min-w-0">
+      <main className="flex-1 flex flex-col relative min-w-0 transition-all duration-300">
+        
+        {/* Mobile Header */}
+        <div className="md:hidden bg-white border-b border-slate-200 p-4 flex items-center justify-between sticky top-0 z-20">
+          <button 
+            onClick={() => setIsSidebarOpen(true)}
+            className="p-2 -ml-2 text-slate-600 hover:bg-slate-100 rounded-lg"
+          >
+            <Menu size={24} />
+          </button>
+          <span className="font-bold text-slate-800">YT Learner</span>
+          <div className="w-8"></div> {/* Spacer for center alignment */}
+        </div>
+
         {viewState === 'home' && (
           <VideoInput onGenerate={handleGenerate} />
         )}

@@ -111,20 +111,20 @@ const VideoAnalysisView: React.FC<VideoAnalysisViewProps> = ({ video, isLoading 
   return (
     <div className="flex-1 flex flex-col h-full overflow-hidden bg-slate-50">
       {/* Top Bar / Breadcrumb */}
-      <div className="bg-white border-b border-slate-200 px-8 py-4 flex items-center justify-between shadow-sm flex-shrink-0 z-10">
+      <div className="bg-white border-b border-slate-200 px-4 md:px-8 py-4 flex items-center justify-between shadow-sm flex-shrink-0 z-10">
         <h2 className="font-semibold text-lg text-slate-800 truncate max-w-2xl" title={video.title}>
           {video.title}
         </h2>
-        <div className="flex items-center gap-2 text-sm text-slate-500">
+        <div className="hidden md:flex items-center gap-2 text-sm text-slate-500">
            <span className="bg-slate-100 px-2 py-1 rounded border border-slate-200 font-mono text-xs">ID: {video.youtubeId}</span>
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-8 custom-scrollbar">
-        <div className="max-w-6xl mx-auto space-y-8">
+      <div className="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar">
+        <div className="max-w-6xl mx-auto space-y-6 md:space-y-8">
           
           {/* Video Player Section */}
-          <div className="w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl ring-1 ring-slate-900/5">
+          <div className="w-full aspect-video bg-black rounded-xl md:rounded-2xl overflow-hidden shadow-2xl ring-1 ring-slate-900/5">
             <iframe
               className="w-full h-full"
               src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`}
@@ -136,7 +136,7 @@ const VideoAnalysisView: React.FC<VideoAnalysisViewProps> = ({ video, isLoading 
           </div>
 
           {/* Analysis Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 pb-12">
             
             {/* Insights Column */}
             <div className="lg:col-span-1 flex flex-col gap-6">

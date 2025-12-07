@@ -33,19 +33,19 @@ const VideoInput: React.FC<VideoInputProps> = ({ onGenerate }) => {
             </div>
           </div>
           <div className="space-y-3">
-            <h1 className="text-5xl font-extrabold text-slate-900 tracking-tight">
+            <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
               Learn smarter from <span className="gradient-accent bg-clip-text text-transparent">YouTube</span>
             </h1>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed px-4">
               Get instant AI summaries and interactive transcripts. Paste a video link below to start learning.
             </p>
           </div>
         </div>
 
         {/* Input form */}
-        <form onSubmit={handleSubmit} className="relative max-w-2xl mx-auto animate-scale-in">
-          <div className="relative group">
-            <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+        <form onSubmit={handleSubmit} className="relative max-w-2xl mx-auto animate-scale-in w-full">
+          <div className="relative group flex flex-col md:block">
+            <div className="absolute top-5 left-0 pl-5 flex items-center pointer-events-none md:inset-y-0">
               <Search className="h-6 w-6 text-slate-400 group-focus-within:text-blue-600 transition-colors" />
             </div>
             <input
@@ -55,12 +55,12 @@ const VideoInput: React.FC<VideoInputProps> = ({ onGenerate }) => {
                 setUrl(e.target.value);
                 setError('');
               }}
-              className="block w-full pl-14 pr-36 py-5 bg-white border-2 border-slate-200 rounded-2xl shadow-lg placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-base hover:border-slate-300"
+              className="block w-full pl-14 pr-4 md:pr-36 py-5 bg-white border-2 border-slate-200 rounded-2xl shadow-lg placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-base hover:border-slate-300"
               placeholder="Paste YouTube URL here..."
             />
             <button
               type="submit"
-              className="absolute right-2 top-2 bottom-2 gradient-primary hover:opacity-90 text-white px-7 rounded-xl font-semibold transition-all flex items-center gap-2 shadow-lg hover:shadow-blue-500/50 group"
+              className="mt-3 md:mt-0 w-full md:w-auto md:absolute md:right-2 md:top-2 md:bottom-2 gradient-primary hover:opacity-90 text-white px-7 py-4 md:py-0 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-blue-500/50 group"
             >
               <Sparkles size={18} className="group-hover:rotate-12 transition-transform" />
               <span>Generate</span>
