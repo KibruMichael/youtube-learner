@@ -69,7 +69,7 @@ const App: React.FC = () => {
     }
   };
 
-  const handleGenerate = async (url: string) => {
+  const handleGenerate = async (url: string, lang: 'en' | 'am') => {
     if (!user) return;
 
     const ytId = getYoutubeId(url);
@@ -116,16 +116,16 @@ const App: React.FC = () => {
       const insightsWebhookUrl = 'https://hook.eu1.make.com/py1odn2kjgjlmf74vepttcvco3biuabk';
       const transcriptWebhookUrl = 'https://hook.eu1.make.com/24b913pgm5tod9fsdvxk3f7flupq8g2l';
 
-      // Call both webhooks in parallel
+      // Call both webhooks in parallel with language parameter
       const [insightsResult, transcriptResult] = await Promise.allSettled([
         // Insights webhook
-        fetch(`${insightsWebhookUrl}?url=${encodeURIComponent(url)}&uid=${user.uid}&videoId=${newId}`, {
+        fetch(`${insightsWebhookUrl}?url=${encodeURIComponent(url)}&uid=${user.uid}&videoId=${newId}&youtubeId=${ytId}&lang=${lang}`, {
           method: 'GET',
           headers: { 'Accept': 'text/plain, application/json' }
         }).then(res => res.text()),
         
         // Transcript webhook
-        fetch(`${transcriptWebhookUrl}?url=${encodeURIComponent(url)}&uid=${user.uid}&videoId=${newId}`, {
+        fetch(`${transcriptWebhookUrl}?url=${encodeURIComponent(url)}&uid=${user.uid}&videoId=${newId}&youtubeId=${ytId}&lang=${lang}`, {
           method: 'GET',
           headers: { 'Accept': 'text/plain, application/json' }
         }).then(async res => {

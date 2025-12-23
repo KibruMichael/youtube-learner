@@ -8,6 +8,7 @@ This application generates detailed **Transcripts** and **AI Insights** (Key Tak
 ## ✨ Features
 
 - **🚀 Universal Support**: Works with videos of any length (bypassing standard AI token limits).
+- **🌍 Multi-Language**: Supports **English** 🇺🇸 and **Amharic** 🇪🇹 transcription.
 - **🧠 AI Insights**: Automatically extracts the top 5 key takeaways/summary points.
 - **📝 Full Transcript**: Generates a clean, time-stamped transcript.
 - **💾 History**: Saves all your analyzed videos to your personal library (via Firebase).
@@ -77,11 +78,19 @@ You need to create **TWO** separate scenarios in Make.com.
     -   Create a webhook and copy the URL.
     -   *Note this URL for later.*
 3.  **Module 2: HTTP** (Make a request)
-    -   **URL**: `https://tactiq-apps-prod.tactiq.io/transcript`
+    -   **URL**: `https://youtube-transcripts-transcribe-youtube-video-to-text.p.rapidapi.com/transcribe`
     -   **Method**: `POST`
-    -   **Body Type**: `JSON`
-    -   **Request Content**: `{"videoUrl": "{{1.url}}"}`
-    -   **Headers**: `Content-Type: application/json`
+    -   **Headers**:
+        -   `x-rapidapi-key`: `YOUR_RAPIDAPI_KEY`
+        -   `x-rapidapi-host`: `youtube-transcripts-transcribe-youtube-video-to-text.p.rapidapi.com`
+    -   **Body Type**: `JSON` (application/json)
+    -   **Request Content**: 
+        ```json
+        {
+          "url": "{{1.url}}",
+          "lang": "{{1.lang}}"
+        }
+        ```
     -   **Parse Response**: `Yes`
 4.  **Module 3: Google Gemini AI** (Generate a response)
     -   **Model**: `gemini-1.5-flash`
